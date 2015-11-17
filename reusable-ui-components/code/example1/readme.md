@@ -1,5 +1,7 @@
-#Some of nastiest code I've ever seen...
+#Bad code example
+
+##This is the stuff that nightmares are made from
 
 This directory contains some examples of how bad WordPress templates can get if there is no organisation or system in
-place.
-
+place. This is actual code, written for a high traffic website, that I inherited when the original developer could no
+longer maintain the project.
