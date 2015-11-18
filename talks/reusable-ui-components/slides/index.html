@@ -21,6 +21,15 @@
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
 
+    <style>
+        .pds-dollars{
+            color:#51A928;
+        }
+        .emphasize{
+            color:#4FB7E8;
+        }
+    </style>
+
     <!-- Printing and PDF exports -->
     <script>
         var link = document.createElement('link');
@@ -59,13 +68,40 @@
         </section>
 
         <section>
-            <h3>What do we mean by 'Reusable UI Components?'</h3>
+            <h3>What do we mean by <span class="emphasize">Reusable UI Components</span>?</h3>
             <ul>
                 <li class="fragment">Packaged code that we can use across many projects with minimal configuration</li>
                 <li class="fragment">HTML, CSS, JS, & PHP</li>
                 <li class="fragment">Highly portable, ideally managed via a package manager</li>
                 <li class="fragment">Preferably framework/CMS agnostic</li>
             </ul>
+        </section>
+
+        <section>
+            <h3>Why do we care?</h3>
+            <ul>
+                <li class="fragment">Redeveloping the same thing over and over is a pain</li>
+                <li class="fragment">We can make more <span class="pds-dollars">$$$</span> by building on our past efforts</li>
+                <li class="fragment">Modular, packaged code makes for smoother living;
+                    <ul>
+                        <li>Easier to develop further</li>
+                        <li>Easier to maintain</li>
+                        <li>Easier to understand</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Resources</h3>
+            <a target="_blank" href="https://getcomposer.org/">Composer</a><br>
+            <a target="_blank" href="https://github.com/mishtershmart/mishtershmart.github.io/tree/master/talks/reusable-ui-components/code">Code examples</a>
+        </section>
+
+        <section>
+            <h3>Contact</h3>
+            <a target="_blank" href="http://philsmart.me">philsmart.me</a><br>
+            <a target="_blank" href="https://twitter.com/mishtershmart">@mishtershmart</a>
         </section>
 
     </div>
