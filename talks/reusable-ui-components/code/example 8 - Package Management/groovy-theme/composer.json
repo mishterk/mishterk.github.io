@@ -9,5 +9,7 @@
   "config": {
     "vendor-dir": "composer_modules"
   },
-  "require": {}
+  "require": {
+    "groovy-ui/post": "dev-master"
+  }
 }
