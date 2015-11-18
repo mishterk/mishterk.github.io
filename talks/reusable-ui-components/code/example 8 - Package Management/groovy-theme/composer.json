@@ -1,0 +1,13 @@
+{
+  "name": "philsmart/reusable-ui-components-example-8",
+  "authors": [
+    {
+      "name": "Phil",
+      "email": "phil@philsmartdesign.com.au"
+    }
+  ],
+  "config": {
+    "vendor-dir": "composer_modules"
+  },
+  "require": {}
+}
