@@ -12,7 +12,14 @@ get_header();
 			<?php while ( have_posts() ): ?>
 				<?php the_post(); ?>
 
-				<?php get_template_part( 'partials/post' ) ?>
+				<?php
+				\GroovyTheme\get_template_part( 'partials/post', '', array(
+						'title'   => get_the_title(),
+						'author'  => get_the_author(),
+						'excerpt' => get_the_excerpt(),
+						'link'    => get_permalink()
+				) );
+				?>
 
 			<?php endwhile; ?>
 		<?php endif; ?>
