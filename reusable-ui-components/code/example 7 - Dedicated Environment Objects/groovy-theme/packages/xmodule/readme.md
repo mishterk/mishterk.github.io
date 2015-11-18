@@ -1,0 +1,1 @@
+This is simply an example of where another module would sit within the project.
