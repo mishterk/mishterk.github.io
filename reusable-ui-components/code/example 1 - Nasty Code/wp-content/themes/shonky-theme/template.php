@@ -17,6 +17,7 @@ require( TEMPLATEPATH . '/inc/home_helper.php' );
 function new_excerpt_more( $more )
 {
 	global $post;
+
 	return '...';
 }
 
@@ -24,23 +25,24 @@ add_filter( 'excerpt_more', 'new_excerpt_more' );
 
 get_header();
 
-$news_category_slug      = 'news-daily';
-$news_title              = 'News Daily';
-$news_slogan             = "All the biggest shonky news and more from around the globe";
+$news_category_slug           = 'news-daily';
+$news_title                   = 'News Daily';
+$news_slogan                  = "All the biggest shonky news and more from around the globe";
 $top_feature_section_post_ids = array();
 
 // get the first feature article for the top of the page
 $feature_query = new WP_Query( "category_name=feature&posts_per_page=1" );
 
-if ($feature_query->have_posts()) {
+if ( $feature_query->have_posts() ) {
 	$feature_query->the_post();
 	$top_feature_post_id            = $post->ID;
 	$top_feature_section_post_ids[] = $top_feature_post_id;
 
-	if (has_post_thumbnail( $top_feature_post_id ))
+	if ( has_post_thumbnail( $top_feature_post_id ) ) {
 		$feature_image = wp_get_attachment_image_src( get_post_thumbnail_id( $top_feature_post_id ), 'single-post-thumbnail' );
-	else
+	} else {
 		$feature_image = get_template_directory_uri() . "/images/default_large_feature_image.png";
+	}
 	?>
 	<div class='body-wrapper'>
 	<div class="feature-image" style="background-image: url('<?php echo $feature_image[0]; ?>');">
@@ -58,19 +60,21 @@ if ($feature_query->have_posts()) {
 				 */
 				do_action( 'shonkytheme/hook/associate_logo' );
 				$feature_title_override_font_size = get_post_custom_values( 'feature_title_override_font_size', $top_feature_post_id );
-				if (isset( $feature_title_override_font_size[0] ))
+				if ( isset( $feature_title_override_font_size[0] ) ) {
 					$feature_major_heading_style_override = "style='font-size: " . $feature_title_override_font_size[0] . "px;'";
-				else
+				} else {
 					$feature_major_heading_style_override = "";
+				}
 				?>
 				<h2 class='feature-major-heading' <?php echo $feature_major_heading_style_override; ?>>
 					<a href='<?php the_permalink(); ?>'>
 						<?php
 						$feature_title_override_text = get_post_custom_values( 'feature_title_override_text', $top_feature_post_id );
-						if (isset( $feature_title_override_text[0] ))
+						if ( isset( $feature_title_override_text[0] ) ) {
 							echo $feature_title_override_text[0];
-						else
+						} else {
 							echo the_title();
+						}
 						?>
 					</a>
 				</h2>
@@ -82,7 +86,7 @@ if ($feature_query->have_posts()) {
 				</div>
 				<div class='feature-details-gutter'>
 
-					<?php if (get_comments_number( $top_feature_post_id ) > 0): ?>
+					<?php if ( get_comments_number( $top_feature_post_id ) > 0 ): ?>
 						<div class='article-comment-count'>
 							<i class="shonkythemeicon-speech-bbl"></i>
 							<?= get_comments_number( $top_feature_post_id ); ?>
@@ -130,7 +134,7 @@ wp_reset_query();
 				) );
 				$recent_articles_query = new WP_Query( $query_args );
 
-				while ($recent_articles_query->have_posts()) {
+				while ( $recent_articles_query->have_posts() ) {
 					$recent_articles_query->next_post();
 
 					$top_feature_section_post_ids[] = $recent_articles_query->post->ID;
@@ -164,7 +168,7 @@ wp_reset_query();
 				<div style='clear: left;'></div>
 				<?php
 				/** @var WP_Post $post */
-				foreach ($latest_news_posts as $post) {
+				foreach ( $latest_news_posts as $post ) {
 					STHomeHelper::getArticleHtml( $post->ID, 'horizontal', 'small', true, false );
 				}
 				?>
@@ -193,7 +197,7 @@ wp_reset_query();
 			) );
 			$latest_features_query = new WP_Query( $query_args );
 
-			while ($latest_features_query->have_posts()) {
+			while ( $latest_features_query->have_posts() ) {
 				$latest_features_query->next_post();
 
 				echo STHomeHelper::getArticleHtml( $latest_features_query->post->ID, 'vertical', 'medium', true, true );
@@ -209,7 +213,9 @@ wp_reset_query();
 		<div class='home-articles-section'>
 			<a class='home-category-more-link' href='/category/tech-features/'>MORE <span>&plus;</span></a>
 
-			<h2 class='home-section-heading'><a href='/category/tech-features/'>Tech</a><?= apply_filters('shonkytheme/filter/home_tech_section_title_appendage',''); ?></h2>
+			<h2 class='home-section-heading'><a
+					href='/category/tech-features/'>Tech</a><?= apply_filters( 'shonkytheme/filter/home_tech_section_title_appendage', '' ); ?>
+			</h2>
 
 			<div style='clear: left;'></div>
 
@@ -220,7 +226,7 @@ wp_reset_query();
 			) );
 			$reviews_query = new WP_Query( $query_args );
 
-			while ($reviews_query->have_posts()) {
+			while ( $reviews_query->have_posts() ) {
 				$reviews_query->next_post();
 
 				echo STHomeHelper::getArticleHtml( $reviews_query->post->ID, 'vertical', 'large', true, true );
@@ -246,7 +252,7 @@ wp_reset_query();
 			) );
 			$roadtripping_query = new WP_Query( $query_args );
 
-			while ($roadtripping_query->have_posts()) {
+			while ( $roadtripping_query->have_posts() ) {
 				$roadtripping_query->next_post();
 
 				echo STHomeHelper::getArticleHtml( $roadtripping_query->post->ID, 'vertical', 'large', true, true, true );
@@ -259,14 +265,17 @@ wp_reset_query();
 	<div class='home-section-container-bottom-border'></div>
 
 <?php
-if (ST_SITE == 'ENGLISH') {
+if ( ST_SITE == 'ENGLISH' ) {
 	?>
 	<div class='home-section-container'>
 		<div class='home-articles-section'>
-			<a class='home-category-more-link' href='<?= $womens_url = get_permalink( \Shonkytheme\Meta::$ella_home_page_id ) ?>'>MORE
+			<a class='home-category-more-link'
+			   href='<?= $womens_url = get_permalink( \Shonkytheme\Meta::$ella_home_page_id ) ?>'>MORE
 				<span>&plus;</span></a>
 
-			<h2 class='home-section-heading'><a href='<?= $womens_url ?>'>Women's Cycling</a><?= apply_filters('shonkytheme/filter/home_womens_section_title_appendage',''); ?></h2>
+			<h2 class='home-section-heading'><a href='<?= $womens_url ?>'>Women's
+					Cycling</a><?= apply_filters( 'shonkytheme/filter/home_womens_section_title_appendage', '' ); ?>
+			</h2>
 
 			<div style='clear: left;'></div>
 			<?php
@@ -284,7 +293,7 @@ if (ST_SITE == 'ENGLISH') {
 			) );
 			$womens_query = new WP_Query( $query_args );
 
-			while ($womens_query->have_posts()) {
+			while ( $womens_query->have_posts() ) {
 				$womens_query->next_post();
 
 				echo STHomeHelper::getArticleHtml( $womens_query->post->ID, 'vertical', 'large', true, true );
@@ -318,13 +327,13 @@ if (ST_SITE == 'ENGLISH') {
 
 
 				$ctr = 1;
-				while ($featured_video_query->have_posts())
+				while ( $featured_video_query->have_posts() )
 				{
 				$featured_video_query->next_post();
 
 				echo STHomeHelper::getArticleHtml( $featured_video_query->post->ID, 'horizontal', 'small', false, true );
 
-				if ($ctr == 2 || $ctr == 4)
+				if ( $ctr == 2 || $ctr == 4 )
 				{
 				?>
 			</div>
@@ -342,7 +351,7 @@ if (ST_SITE == 'ENGLISH') {
 	<div class='home-section-container-bottom-border'></div>
 
 <?php
-if (ST_SITE == 'ENGLISH') {
+if ( ST_SITE == 'ENGLISH' ) {
 	?>
 	<div class='home-section-container'>
 		<div class='home-articles-section'>
@@ -360,7 +369,7 @@ if (ST_SITE == 'ENGLISH') {
 			) );
 			$reviews_query = new WP_Query( $query_args );
 
-			while ($reviews_query->have_posts()) {
+			while ( $reviews_query->have_posts() ) {
 				$reviews_query->next_post();
 
 				echo STHomeHelper::getArticleHtml( $reviews_query->post->ID, 'vertical', 'large', true, true );
@@ -376,7 +385,7 @@ if (ST_SITE == 'ENGLISH') {
 ?>
 
 <?php
-if (ST_SITE == 'ENGLISH') {
+if ( ST_SITE == 'ENGLISH' ) {
 	?>
 	<div class='home-section-container'>
 		<div class='home-right-col' id='divSecretProAd'>
@@ -397,7 +406,7 @@ if (ST_SITE == 'ENGLISH') {
 				) );
 				$secret_pro_query = new WP_Query( $query_args );
 
-				if ($secret_pro_query->have_posts()) {
+				if ( $secret_pro_query->have_posts() ) {
 					$secret_pro_query->next_post();
 
 					$secret_pro_homepage_quote = get_post_custom_values( 'secret_pro_homepage_quote', $secret_pro_query->post->ID );
@@ -406,8 +415,9 @@ if (ST_SITE == 'ENGLISH') {
 
 				<blockquote class='home-secret-pro-blockquote'>
 					<?php
-					if (isset( $secret_pro_homepage_quote[0] ))
+					if ( isset( $secret_pro_homepage_quote[0] ) ) {
 						echo $secret_pro_homepage_quote[0];
+					}
 					?>
 				</blockquote>
 
@@ -417,7 +427,7 @@ if (ST_SITE == 'ENGLISH') {
 					<?php
 					echo STHomeHelper::getArticleHtml( $secret_pro_query->post->ID, 'title-and-date', '', true, true );
 
-					while ($secret_pro_query->have_posts()) {
+					while ( $secret_pro_query->have_posts() ) {
 						$secret_pro_query->next_post();
 
 						echo STHomeHelper::getArticleHtml( $secret_pro_query->post->ID, 'title-and-date', '', true, true );
@@ -435,24 +445,30 @@ if (ST_SITE == 'ENGLISH') {
 ?>
 
 <?php
-if (ST_SITE == 'ENGLISH') {
+if ( ST_SITE == 'ENGLISH' ) {
 	?>
 	<div class='home-section-container'>
 		<div class='home-right-col-no-border'>
 			<div class='home-articles-section'>
 				<h2 class='home-section-heading'>Proudly Supporting</h2>
-				<img class='home-supporting-logo' src='<?php echo get_template_directory_uri(); ?>/images/supporting-amy-gillet-foundation.jpg'/>
-				<img class='home-supporting-logo' src='<?php echo get_template_directory_uri(); ?>/images/supporting-candle-network.png'/>
+				<img class='home-supporting-logo'
+				     src='<?php echo get_template_directory_uri(); ?>/images/supporting-amy-gillet-foundation.jpg'/>
+				<img class='home-supporting-logo'
+				     src='<?php echo get_template_directory_uri(); ?>/images/supporting-candle-network.png'/>
 			</div>
 
 		</div>
 		<div class='home-left-col'>
 			<div class='home-articles-section'>
 				<h2 class='home-section-heading'>Longterm Supporters</h2>
-				<img class='home-supporter-logo' src='<?php echo get_template_directory_uri(); ?>/images/supporter-company1.png'/>
-				<img class='home-supporter-logo' src='<?php echo get_template_directory_uri(); ?>/images/supporter-company2.png'/>
-				<img class='home-supporter-logo' width="84" height="77" src='<?php echo get_template_directory_uri(); ?>/images/logo-company3-2015.svg'/>
-				<img class='home-supporter-logo' src='<?php echo get_template_directory_uri(); ?>/images/supporter-styletours.jpg'/>
+				<img class='home-supporter-logo'
+				     src='<?php echo get_template_directory_uri(); ?>/images/supporter-company1.png'/>
+				<img class='home-supporter-logo'
+				     src='<?php echo get_template_directory_uri(); ?>/images/supporter-company2.png'/>
+				<img class='home-supporter-logo' width="84" height="77"
+				     src='<?php echo get_template_directory_uri(); ?>/images/logo-company3-2015.svg'/>
+				<img class='home-supporter-logo'
+				     src='<?php echo get_template_directory_uri(); ?>/images/supporter-styletours.jpg'/>
 			</div>
 		</div>
 		<div style='clear:left;'></div>
