@@ -1,0 +1,13 @@
+.container{}
+.other-container{}
+
+// ... lots of other Scss here ...
+
+.post {
+  &__title{}
+  &__author{}
+  &__excerpt{}
+  &__permalink{}
+}
+
+// ... lots of other Scss here ...
