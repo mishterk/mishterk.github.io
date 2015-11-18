@@ -1,12 +1,12 @@
 <?php
 /**
- * Basic template
+ * Template Name: Page Template
  */
 
 get_header();
 ?>
 
-	<div class="container">
+	<div class="other-container">
 
 		<?php if ( have_posts() ): ?>
 			<?php while ( have_posts() ): ?>
