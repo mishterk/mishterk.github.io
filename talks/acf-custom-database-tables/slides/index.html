@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>ACF Custom Database Tables Plugin</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <style>
+        .pds-dollars {
+            color: #51A928;
+        }
+
+        .reveal .emphasize {
+            color: #4FB7E8;
+        }
+
+        .reveal .no-dots {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .reveal li {
+            margin: 0.75em auto;
+            line-height: 1.2;
+        }
+
+        .reveal .tight li {
+            margin: 0.45em auto;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-transform: none !important;
+        }
+
+        .reveal .small {
+            font-size: 0.65em;
+        }
+
+        .reveal img {
+            border:none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .reveal small {
+            line-height: 1;
+            vertical-align: baseline;
+        }
+    </style>
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body class="body">
+
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+
+        <section data-background="img/code-bg-2.jpg">
+            <h2>ACF Custom Database Tables</h2>
+            <p>
+                <small>Storing ACF-driven meta data somewhere other than <code>{$wpdb->postmeta}</code>.
+                </small>
+            </p>
+            <p style="font-size:0.5em;">Plugin demo by Phil Kurth</p>
+        </section>
+
+
+        <section>
+            <h2>What is it?</h2>
+            <p><span class="emphasize">ACF Custom Database Tables</span> is an ACF extension plugin that makes it
+                possible to store ACF
+                data in organised, structured database tables instead of WordPress' core meta tables.</p>
+        </section>
+
+
+        <section>
+            <h2>What's the difference?</h2>
+            <img src="img/final-comparison.svg">
+        </section>
+
+
+        <section>
+            <h2>Why bother?</h2>
+            <ul class="no-dots">
+                <li><span class="emphasize">Portability</span> &nbsp;&nbsp;<small>export a whole table with ease</small>
+                </li>
+                <li><span class="emphasize">Searchability</span> &nbsp;&nbsp;<small>structured data can be searched much
+                    faster
+                </small>
+                </li>
+                <li><span class="emphasize">Speed</span> &nbsp;&nbsp;<small>structured data can offer less work to
+                    database engines
+                </small>
+                </li>
+                <li><span class="emphasize">Scalability</span> &nbsp;&nbsp;<small>faster, more efficient queries == less
+                    strain on resources
+                </small>
+                </li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>The gist</h2>
+            <ol class="no-dots">
+                <li><span class="emphasize">ACF Field Groups</span> dictate the structure of custom tables</li>
+                <li>when a field group is saved, a <span class="emphasize">JSON</span> file containing the table
+                    structure is generated
+                </li>
+                <li>The JSON is used to generate <span class="emphasize">database tables</span> and a table/field map
+                </li>
+                <li>The <span class="emphasize">table map</span> is used to store/retrieve data in its appropriately
+                </li>
+            </ol>
+        </section>
+
+
+        <section>
+            <h2>Demo Time!</h2>
+            <ul class="no-dots">
+                <li>Demo 1: Capturing leads with the <a href="https://wordpress.org/plugins/advanced-forms/">Advanced
+                    Forms</a> plugin
+                </li>
+                <li>Demo 2: Object/entity data rows</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>Cool features</h2>
+            <ul class="no-dots">
+                <li>Relational fields can form their own tables</li>
+                <li>Data storage in core meta tables can be deactivated entirely</li>
+                <li>Filters for disabling fields on a per table, per field type, or even per field name/key</li>
+                <li>Arrays are JSON-encoded instead of serialised</li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>Future Plans</h2>
+            <ul class="no-dots tight">
+                <li>
+                    <span class="emphasize">Complex field support</span> &nbsp;&nbsp;<small>repeaters, groups, clones,
+                    flexi-content
+                </small>
+                </li>
+                <li>
+                    <span class="emphasize">Data migration</span> &nbsp;&nbsp;<small>existing data >>> newly created
+                    tables
+                </small>
+                </li>
+                <li>
+                    <span class="emphasize">GUI</span> &nbsp;&nbsp;<small>powerful interface for opening up more
+                    flexibility and control
+                </small>
+                </li>
+                <li>
+                    <span class="emphasize">WP CLI</span> &nbsp;&nbsp;<small>run processes from the command line</small>
+                </li>
+                <li>
+                    <span class="emphasize">Import/Export</span> &nbsp;&nbsp;<small>take control of your data from the
+                    admin
+                </small>
+                </li>
+                <li>
+                    <span class="emphasize">Developer Tools</span> &nbsp;&nbsp;<small>tools for advanced data queries
+                    without SQL
+                </small>
+                </li>
+                <div style="text-align: center;">
+                    <small>…and plenty more…</small>
+                </div>
+            </ul>
+        </section>
+
+
+        <section data-background="img/code-bg-2.jpg">
+            <h2>Got questions?</h2>
+            <p class="small">You can reach me at <a
+                    href="mailto:phil@philkurth.com.au?subject=Nice presentation. Let's talk shop.">phil@philkurth.com.au</a>
+            </p>
+            <p class="small">Plugin will be available soon at <a href="https://hookturn.io/">Hookturn.io</a>.</p>
+        </section>
+
+
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: '100%',
+        height: '100%',
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                    return !document.body.classList;
+                }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {src: 'plugin/zoom-js/zoom.js', async: true},
+            {src: 'plugin/notes/notes.js', async: true}
+        ]
+    });
+
+</script>
+
+</body>
+</html>
